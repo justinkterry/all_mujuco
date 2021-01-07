@@ -5,7 +5,7 @@ from all.environments import GymEnvironment
 
 
 def modified_fc_actor_critic(env, hidden1=64, hidden2=64):
-    features = nn.sequential(nn.Identity())
+    features = nn.Sequential(nn.Identity())
 
     v = nn.Sequential(
         nn.Linear(env.state_space.shape[0] + 1, hidden1),
