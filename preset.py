@@ -6,8 +6,8 @@ from all.bodies import TimeFeature
 from all.logging import DummyWriter
 from all.optim import LinearScheduler
 from all.policies import GaussianPolicy
-from all.presets.continuous.builder import preset_builder
-from all.presets.continuous.preset import Preset
+from all.presets.builder import preset_builder
+from all.presets.preset import Preset
 import torch.nn as nn
 
 
