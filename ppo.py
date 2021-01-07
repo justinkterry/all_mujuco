@@ -2,7 +2,7 @@ import torch
 from torch.nn.functional import mse_loss
 from all.logging import DummyWriter
 from all.memory import GeneralizedAdvantageBuffer
-from all._agent import Agent
+from _agent import Agent
 
 
 class PPO(Agent):
