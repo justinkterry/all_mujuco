@@ -1,11 +1,12 @@
 from all import nn
+import torch
 from all.presets.continuous import ppo
 from all.experiments import run_experiment, plot_returns_100
 from all.environments import GymEnvironment
 
 
 def modified_fc_actor_critic(env, hidden1=64, hidden2=64):
-    features = nn.identity()
+    features = torch.nn.identity()
 
     v = nn.Sequential(
         nn.Linear(env.state_space.shape[0] + 1, hidden1),
