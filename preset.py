@@ -140,5 +140,11 @@ class PPOContinuousPreset(Preset):
             writer=writer,
         ))
 
+    def test_agent(self):
+        feature = FeatureNetwork(copy.deepcopy(self.feature_model))
+        policy = GaussianPolicy(copy.deepcopy(self.policy_model), space=self.action_space)
+        return TimeFeature(PPOTestAgent(feature, policy))
+
+
 
 ppo = preset_builder('ppo', default_hyperparameters, PPOContinuousPreset)
