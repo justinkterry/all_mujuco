@@ -48,7 +48,7 @@ ppo = ppo(
     # GAE settings
     lam=0.95,
     # Model construction
-    ac_model_constructor=modified_fc_actor_critic)
+    ac_model_constructor=modified_fc_actor_critic())
 
 
 run_experiment([ppo()], [GymEnvironment('InvertedPendulum-v2', device='cuda')], frames=1e6)
