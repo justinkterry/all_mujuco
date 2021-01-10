@@ -28,7 +28,6 @@ def modified_fc_actor_critic(env, hidden1=64, hidden2=64):
 
 
 ppo = ppo(
-    device="cuda",
     discount_factor=0.99,
     last_frame=1e6,
     # Adam optimizer settings
