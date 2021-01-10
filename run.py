@@ -53,5 +53,5 @@ hyperparameters = {
     'ac_model_constructor': modified_fc_actor_critic}
 
 
-run_experiment([ppo(hyperparameters)], [GymEnvironment(dtype_v0(env,'float64'), device='cuda')], frames=1e6)
+run_experiment([ppo(hyperparameters)], [GymEnvironment(dtype_v0(env, 'float64'), device='cuda')], frames=1e6)
 #plot_returns_100('runs', timesteps=1e6)
