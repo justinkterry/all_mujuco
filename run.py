@@ -4,7 +4,7 @@ from all.experiments import run_experiment, plot_returns_100
 from all.environments import GymEnvironment
 from supersuit import dtype_v0
 import gym
-env = gym.make("InvertedPendulum-v2")
+env = gym.make('InvertedPendulum-v2')
 
 
 def modified_fc_actor_critic(env, hidden1=64, hidden2=64):
