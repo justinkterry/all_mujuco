@@ -51,5 +51,5 @@ ppo = ppo(
     ac_model_constructor=modified_fc_actor_critic)
 
 
-run_experiment([ppo], [GymEnvironment('InvertedPendulum-v2', device='cuda')], frames=1e6)
+run_experiment([ppo()], [GymEnvironment('InvertedPendulum-v2', device='cuda')], frames=1e6)
 plot_returns_100('runs', timesteps=1e6)
