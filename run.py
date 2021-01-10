@@ -2,6 +2,9 @@ import torch.nn as nn
 from all.presets.continuous import ppo
 from all.experiments import run_experiment, plot_returns_100
 from all.environments import GymEnvironment
+from supersuit import dtype_v0
+import gym
+env = gym.make("InvertedPendulum-v2")
 
 
 def modified_fc_actor_critic(env, hidden1=64, hidden2=64):
@@ -50,5 +53,5 @@ hyperparameters = {
     'ac_model_constructor': modified_fc_actor_critic}
 
 
-run_experiment([ppo(hyperparameters)], [GymEnvironment('InvertedPendulum-v2', device='cuda')], frames=1e6)
+run_experiment([ppo(hyperparameters)], [GymEnvironment(dtype_v0(env,'float64'), device='cuda')], frames=1e6)
 #plot_returns_100('runs', timesteps=1e6)
