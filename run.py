@@ -56,5 +56,5 @@ hyperparameters = {
     'policy_network': policy}
 
 
-run_experiment([ppo(hyperparameters)], [GymEnvironment(dtype_v0(env, 'float32'), device='cuda')], frames=1e6)
+run_experiment([ppo(hyperparameters=hyperparameters)], [GymEnvironment(dtype_v0(env, 'float32'), device='cuda')], frames=1e6)
 #plot_returns_100('runs', timesteps=1e6)
