@@ -6,28 +6,28 @@ from supersuit import dtype_v0
 import gym
 env = gym.make('InvertedPendulum-v2')
 
+state_dim = env.observation_space.shape[0]
+action_dim = env.action_space.shape[0]
+hidden1 = 64
+hidden2 = 64
 
-def modified_fc_actor_critic(env, hidden1=64, hidden2=64):
-    features = nn.Sequential(nn.Identity())
+features = nn.Sequential(nn.Identity())
 
-    v = nn.Sequential(
-        nn.Linear(env.state_space.shape[0], hidden1),
-        nn.ReLU(),
-        nn.Linear(hidden1, hidden2),
-        nn.ReLU(),
-        nn.Linear(hidden2, 1)
+v = nn.Sequential(
+    nn.Linear(state_dim, hidden1),
+    nn.ReLU(),
+    nn.Linear(hidden1, hidden2),
+    nn.ReLU(),
+    nn.Linear(hidden2, 1)
+)
+
+policy = nn.Sequential(
+    nn.Linear(state_dim, hidden1),
+    nn.ReLU(),
+    nn.Linear(hidden1, hidden2),
+    nn.ReLU(),
+    nn.Linear(hidden2, action_dim)
     )
-    print(env.state_space.shape[0])
-    print(env.action_space.shape[0])
-    policy = nn.Sequential(
-        nn.Linear(env.state_space.shape[0], hidden1),
-        nn.ReLU(),
-        nn.Linear(hidden1, hidden2),
-        nn.ReLU(),
-        nn.Linear(hidden2, env.action_space.shape[0])
-    )
-
-    return features, v, policy
 
 
 hyperparameters = {
@@ -51,7 +51,9 @@ hyperparameters = {
     # GAE settings
     'lam': 0.95,
     # Model construction
-    'ac_model_constructor': modified_fc_actor_critic}
+    'feature_network': features,
+    'v_network': v,
+    'policy_network': policy}
 
 
 run_experiment([ppo(hyperparameters)], [GymEnvironment(dtype_v0(env, 'float32'), device='cuda')], frames=1e6)

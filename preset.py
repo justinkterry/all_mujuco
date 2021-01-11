@@ -6,34 +6,8 @@ from all.approximation import VNetwork, FeatureNetwork
 from all.logging import DummyWriter
 from all.optim import LinearScheduler
 from all.policies import GaussianPolicy
-from all.presets.continuous.models import fc_actor_critic
 from all.presets.builder import preset_builder
 from all.presets.preset import Preset
-
-
-default_hyperparameters = {
-    # Common settings
-    "discount_factor": 0.98,
-    # Adam optimizer settings
-    "lr": 3e-4,  # Adam learning rate
-    "eps": 1e-5,  # Adam stability
-    # Loss scaling
-    "entropy_loss_scaling": 0.01,
-    "value_loss_scaling": 0.5,
-    # Training settings
-    "clip_grad": 0.5,
-    "clip_initial": 0.2,
-    "clip_final": 0.01,
-    "epochs": 20,
-    "minibatches": 4,
-    # Batch settings
-    "n_envs": 32,
-    "n_steps": 128,
-    # GAE settings
-    "lam": 0.95,
-    # Model construction
-    "ac_model_constructor": fc_actor_critic
-}
 
 
 class PPOContinuousPreset(Preset):
@@ -62,9 +36,11 @@ class PPOContinuousPreset(Preset):
     """
 
     def __init__(self, env, device="cuda", **hyperparameters):
-        hyperparameters = {**default_hyperparameters, **hyperparameters}
+        hyperparameters = {**hyperparameters}
         super().__init__(hyperparameters["n_envs"])
-        feature_model, value_model, policy_model = hyperparameters["ac_model_constructor"](env)
+        feature_model = hyperparameters["feature_network"]
+        value_model = hyperparameters["v_network"]
+        policy_model = hyperparameters["policy_network"]
         self.feature_model = feature_model.to(device)
         self.value_model = value_model.to(device)
         self.policy_model = policy_model.to(device)
