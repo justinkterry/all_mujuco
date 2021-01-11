@@ -17,7 +17,8 @@ def modified_fc_actor_critic(env, hidden1=64, hidden2=64):
         nn.ReLU(),
         nn.Linear(hidden2, 1)
     )
-
+    print(env.state_space.shape[0])
+    print(env.action_space.shape[0])
     policy = nn.Sequential(
         nn.Linear(env.state_space.shape[0], hidden1),
         nn.ReLU(),
