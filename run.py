@@ -1,5 +1,5 @@
 import torch.nn as nn
-from all.presets.continuous import ppo
+from preset import ppo
 from all.experiments import run_experiment, plot_returns_100
 from all.environments import GymEnvironment
 from supersuit import dtype_v0
