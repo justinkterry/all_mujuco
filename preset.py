@@ -10,6 +10,32 @@ from all.presets.builder import preset_builder
 from all.presets.preset import Preset
 
 
+hyperparameters = {
+    'discount_factor': 0.99,
+    'last_frame': 1e6,
+    # Adam optimizer settings
+    'lr': 3e-4,  # Adam learning rate
+    'eps': 1e-5,  # Adam stability
+    # Loss scaling
+    'entropy_loss_scaling': 0.0,
+    'value_loss_scaling': 0.5,
+    # Training settings
+    'clip_grad': .5,
+    'clip_initial': 0.2,
+    'clip_final': 0.2,
+    'epochs': 15,
+    'minibatches': 1,  # not entirely sure if this is correct
+    # Batch settings
+    'n_envs': 16,  # probably 32?
+    'n_steps': 2048,
+    # GAE settings
+    'lam': 0.95,
+    # Model construction
+    'feature_network': 0,
+    'v_network': 0,
+    'policy_network': 0}
+
+
 class PPOContinuousPreset(Preset):
     """
     Proximal Policy Optimization (PPO) Continuous Control Preset.
@@ -118,4 +144,4 @@ class PPOContinuousPreset(Preset):
         return PPOTestAgent(feature, policy)
 
 
-ppo = preset_builder('ppo', default_hyperparameters, PPOContinuousPreset)
+ppo = preset_builder('ppo', hyperparameters, PPOContinuousPreset)
