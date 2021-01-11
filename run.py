@@ -23,7 +23,7 @@ def modified_fc_actor_critic(env, hidden1=64, hidden2=64):
         nn.ReLU(),
         nn.Linear(hidden1, hidden2),
         nn.ReLU(),
-        nn.Linear(hidden2, env.action_space.shape[0] * 2)
+        nn.Linear(hidden2, env.action_space.shape[0])
     )
 
     return features, v, policy
