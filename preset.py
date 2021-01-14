@@ -31,7 +31,7 @@ hyperparameters = {
     # GAE settings
     'lam': 0.95,
     # Model construction
-    'feature_network': 0
+    'feature_network': 0,
     'v_network': 0,
     'policy_network': 0}
 
