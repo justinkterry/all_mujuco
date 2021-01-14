@@ -4,7 +4,7 @@ from all.experiments import run_experiment
 from all.environments import GymEnvironment
 from supersuit import dtype_v0
 import gym
-env = gym.make('Swimmer-v2')
+env = gym.make('Walker2d-v2')
 
 state_dim = env.observation_space.shape[0]
 action_dim = env.action_space.shape[0]
