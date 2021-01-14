@@ -44,7 +44,7 @@ hyperparameters = {
     'clip_initial': 0.2,
     'clip_final': 0.2,
     'epochs': 15,
-    "minibatches": 4,
+    "minibatches": 32,
     # Batch settings
     "n_envs": 1,
     'n_steps': 2048,
