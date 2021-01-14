@@ -44,9 +44,9 @@ hyperparameters = {
     'clip_initial': 0.2,
     'clip_final': 0.2,
     'epochs': 15,
-    'minibatches': 1,  # not entirely sure if this is correct
+    "minibatches": 4,
     # Batch settings
-    'n_envs': 16,  # probably 32?
+    "n_envs": 32,
     'n_steps': 2048,
     # GAE settings
     'lam': 0.95,
