@@ -1,6 +1,6 @@
 import torch.nn as nn
 from preset import ppo
-from all.experiments import run_experiment, plot_returns_100
+from all.experiments import run_experiment
 from all.environments import GymEnvironment
 from supersuit import dtype_v0
 import gym

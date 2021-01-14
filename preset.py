@@ -9,6 +9,7 @@ from all.policies import GaussianPolicy
 from all.presets.builder import preset_builder
 from all.presets.preset import Preset
 
+
 class PPOContinuousPreset(Preset):
     """
     Proximal Policy Optimization (PPO) Continuous Control Preset.
