@@ -32,12 +32,12 @@ policy = nn.Sequential(
 
 hyperparameters = {
     'discount_factor': 0.99,
-    'last_frame': 1e6,
+    'last_frame': 5e6,
     # Adam optimizer settings
     'lr': 3e-4,  # Adam learning rate
     'eps': 1e-5,  # Adam stability
     # Loss scaling
-    'entropy_loss_scaling': 0.0,
+    'entropy_loss_scaling': 0.001,
     'value_loss_scaling': 0.5,
     # Training settings
     'clip_grad': .5,
@@ -46,7 +46,7 @@ hyperparameters = {
     'epochs': 15,
     "minibatches": 32,
     # Batch settings
-    "n_envs": 1,
+    "n_envs": 16,
     'n_steps': 2048,
     # GAE settings
     'lam': 0.95,
