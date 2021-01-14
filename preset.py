@@ -35,6 +35,7 @@ hyperparameters = {
     'v_network': 0,
     'policy_network': 0}
 
+
 class PPOContinuousPreset(Preset):
     """
     Proximal Policy Optimization (PPO) Continuous Control Preset.
