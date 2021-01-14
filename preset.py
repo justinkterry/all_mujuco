@@ -2,7 +2,7 @@ import copy
 from torch.optim import Adam
 from torch.optim.lr_scheduler import CosineAnnealingLR
 from all.agents import PPO, PPOTestAgent
-from all.approximation import VNetwork, FeatureNetwork
+from all.approximation import VNetwork, Identity
 from all.logging import DummyWriter
 from all.optim import LinearScheduler
 from all.policies import GaussianPolicy
@@ -81,15 +81,8 @@ class PPOContinuousPreset(Preset):
         value_optimizer = Adam(self.value_model.parameters(), lr=self.hyperparameters['lr'], eps=self.hyperparameters['eps'])
         policy_optimizer = Adam(self.policy_model.parameters(), lr=self.hyperparameters['lr'], eps=self.hyperparameters['eps'])
 
-        features = FeatureNetwork(
-            self.feature_model,
-            feature_optimizer,
-            clip_grad=self.hyperparameters['clip_grad'],
-            scheduler=CosineAnnealingLR(
-                feature_optimizer,
-                n_updates
-            ),
-            writer=writer
+        features = Identity(
+            device=self.device
         )
 
         v = VNetwork(
@@ -139,7 +132,7 @@ class PPOContinuousPreset(Preset):
         )
 
     def test_agent(self):
-        feature = FeatureNetwork(copy.deepcopy(self.feature_model))
+        feature = Identity(copy.deepcopy(self.feature_model))
         policy = GaussianPolicy(copy.deepcopy(self.policy_model), space=self.action_space)
         return PPOTestAgent(feature, policy)
 

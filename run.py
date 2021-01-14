@@ -26,7 +26,7 @@ policy = nn.Sequential(
     nn.ReLU(),
     nn.Linear(hidden1, hidden2),
     nn.ReLU(),
-    nn.Linear(hidden2, action_dim)
+    nn.Linear(hidden2, action_dim*2)
     )
 
 
